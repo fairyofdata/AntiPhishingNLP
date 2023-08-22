@@ -1,5 +1,5 @@
-# Django Speech to text, Chat application
-Django app to allow users to convert their speech into text and send that text as a message. This app record blobs in realtime to the server! After every 10 seconds recorded blob is converted into text and send as a message to chat.
+# Django Speech to text, Voise Phishing detecter
+실시간으로 STT를 하여 KOBERT, BILSTM 모델을 사용하여 보이스피싱인지 유무 검출
 
 # Commands to Setup the environment and run the server
 
@@ -15,9 +15,4 @@ Django app to allow users to convert their speech into text and send that text a
 
 > python manage.py runserver
 
-
-# Helpful Link
-https://github.com/streamproc/MediaStreamRecorder/blob/master/demos/audio-recorder.html
-
-I used it for recording audio in the browser as uncompressed pcm audio in .wav containers.
 
