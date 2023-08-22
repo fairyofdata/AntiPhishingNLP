@@ -2,6 +2,7 @@ from django.urls import path
 from . import views
 
 app_name = "chat"
+msg_full = ""
 urlpatterns = [
     path('', views.home, name='home'),
     path('post/', views.post, name='post'),

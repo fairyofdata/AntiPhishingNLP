@@ -1,10 +1,15 @@
 import os
+from tokenize import String
 from chat.models import Chat
 import speech_recognition as sr
 from django.http import HttpResponse
 from django.http import JsonResponse
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
+from .faq_chatbot import faq_answer
+
+
+
 
 
 def home(request):
@@ -36,7 +41,12 @@ def upload(request):
     harvard = sr.AudioFile(filename)
     with harvard as source:
         audio = r.record(source)
-    msg = r.recognize_google(audio)
+    msg = r.recognize_google(audio, language='ko')
+    # print(msg)
+    # msg_full = msg_full + msg
+    msg1=faq_answer(msg)
+    msg=msg1
+
     os.remove(filename)
     chat_message = Chat(user=request.user, message=msg)
     if msg != '':
