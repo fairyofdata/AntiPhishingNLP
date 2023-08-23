@@ -16,3 +16,10 @@
 > python manage.py runserver
 
 
+<img src="README_img/1.png" width="400" height="300"/>
+<br/>
+<img src="README_img/2.png" width="400" height="300"/>
+<br/>
+
+<img src="README_img/3.png" width="400" height="300"/>
+
