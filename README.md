@@ -1,5 +1,5 @@
 # Django Speech to text, Voise Phishing detecter
-실시간으로 STT를 하여 KOBERT, BILSTM 모델을 사용하여 보이스피싱인지 유무 검출
+입력된 음성 파일을 실시간으로 STT 처리하여 변환한 결과를 KOBERT, BILSTM 모델로 보이스피싱인지 유무 검출
 
 # Commands to Setup the environment and run the server
 
