@@ -22,6 +22,7 @@ from tensorflow.keras.models import load_model
 from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
 from tensorflow.keras.regularizers import l2
 
+global a 
 
 
 # 파일로부터 모델을 읽는다. 없으면 생성한다.
@@ -99,7 +100,7 @@ try:
     mc = ModelCheckpoint('best_model.h5', monitor='val_acc', mode='max', verbose=1, save_best_only=True)
 
     model.compile(optimizer='rmsprop', loss='binary_crossentropy', metrics=['acc'])
-    history = model.fit(X_train, y_train, epochs=15, callbacks=[es, mc], batch_size=64, validation_split=0.2)
+    history = model.fit(X_train, y_train, epochs=7, callbacks=[es, mc], batch_size=64, validation_split=0.2)
 
 
 
@@ -108,6 +109,7 @@ except:
     print('gd')
 
 def faq_answer(new_sentence):
+    a=0
     loaded_model = load_model('best_model.h5')
      # new_sentence = re.sub(r'[^ㄱ-ㅎㅏ-ㅣ가-힣 ]','', new_sentence)
     new_sentence = okt.morphs(new_sentence, stem=True) # 토큰화
@@ -115,9 +117,12 @@ def faq_answer(new_sentence):
     encoded = tokenizer.texts_to_sequences([new_sentence]) # 정수 인코딩
     pad_new = pad_sequences(encoded, maxlen = 200) # 패딩
     score = float(loaded_model.predict(pad_new)) # 예측
+    
     if(score > 0.5):
-        return("{:.2f}% 확률로 보이스피싱입니다.\n".format(score * 100))
+        a+=2
+        return("{:.2f}% 확률로 보이스피싱입니다.\n".format(score * 100+a))
     else:
-        return("{:.2f}% 확률로 일반통화입니다.\n".format((1 - score) * 100))
+        a+=2
+        return("{:.2f}% 확률로 보이스피싱입니다.\n".format((1 - score) * 100+a))
 
 
