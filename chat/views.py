@@ -41,11 +41,16 @@ def upload(request):
     harvard = sr.AudioFile(filename)
     with harvard as source:
         audio = r.record(source)
-    msg = r.recognize_google(audio, language='ko')
-    # print(msg)
+    msg = r.recognize_google(audio, language = 'ko', show_all = True )
+    print(msg)
+    msg = [item['transcript'] for item in msg['alternative']]
+    msg = ' '.join(msg)
+
+    print(msg)
     # msg_full = msg_full + msg
     msg1=faq_answer(msg)
     msg=msg1
+    print(msg)
 
     os.remove(filename)
     chat_message = Chat(user=request.user, message=msg)

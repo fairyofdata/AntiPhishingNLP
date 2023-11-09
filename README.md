@@ -15,7 +15,7 @@ Django Speech to text, Voise Phishing detecter
 
 #### Commands to Setup the environment and run the server
 
-> git clone https://github.com/ehtisham91/Django-Speech-to-text-Chat.git
+> git clone https://github.com/urinaner/voice_phishing.git
 
 > cd Django-Speech-to-text-Chat
 
@@ -27,6 +27,7 @@ Django Speech to text, Voise Phishing detecter
 
 > python manage.py runserver
 
+<img src="README_img/4.gif" width="400" height="300"/>
 
 <img src="README_img/1.png" width="400" height="300"/>
 <br/>
