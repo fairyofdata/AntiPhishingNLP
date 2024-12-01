@@ -1,8 +1,6 @@
 ## NLP 기반 피싱 탐지 서비스📱⚠️
 한국외국어대학교 데이터청년캠퍼스 딥러닝기반 자연어처리 과정 프로젝트
 
-생태계교란조: 홍수빈, 백지헌, 장영재, 정희수, 이규영
-
 2023 사이버보안 빅데이터 공모전 C트랙 (한국인터넷진흥원) 최우수상 수상작
 
 ---
@@ -60,3 +58,9 @@ Django Speech to text, Voise Phishing detecter
 
 
 <img src="Phishing Detection/trinity.png" width="700" height="200"/>
+
+
+---
+
+
+생태계교란조: 홍수빈, 백지헌, 장영재, 정희수, 이규영
