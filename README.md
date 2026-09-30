@@ -8,22 +8,22 @@
 > 📌 **Predecessor Project:** The jamo-level tokenization strategy, ensemble design, and community crawling pipeline built in [SepticFilterNLP](https://github.com/fairyofdata/SepticFilterNLP) (Samsung SDS Multicampus Grand Prize, 2022) directly formed the technical foundation of this project.
 
 A dual-channel NLP-based phishing detection system that identifies both **smishing** (text-based phishing) and **voice phishing** simultaneously.  
-The text channel (smishing) uses a **triple ensemble** of KoBERT + KoELECTRA + Att-BiLSTM, while the voice channel converts audio to text via real-time STT before feeding it through the same classification pipeline — a **multi-channel architecture** designed for comprehensive coverage.
+The text channel (smishing) uses a **triple ensemble** of KoBERT + KoELECTRA + Att-BiLSTM (notebooks in `Phishing Detection/`). The voice channel is a separate Django demo: it transcribes speech with the Google Web Speech API and classifies the transcript with its own single LSTM model (`best_model.h5`), not with the ensemble.
 
 ---
 
 ## 🏗️ System Architecture
 
 ```
-[Input Channels]
-    ├── 📩 Smishing SMS (Text) ───────────────────────┐
-    └── 🎙️ Voice Phishing Audio → STT(Django) → Text ─┘
-                                                       ↓
-                               [Trinity Ensemble Classifier]
-                          KoBERT ┬ KoELECTRA ┬ Att-BiLSTM
-                                 └──── Soft Voting ────┘
-                                            ↓
-                                  Phishing / Normal Result
+[Text channel — notebooks]
+    📩 Smishing SMS (Text)
+        → [Trinity Ensemble: KoBERT ┬ KoELECTRA ┬ Att-BiLSTM → Soft Voting]
+        → Phishing / Normal
+
+[Voice channel — Django demo]
+    🎙️ Audio → Google Web Speech API (STT) → Text
+        → [Single LSTM classifier: best_model.h5]
+        → Voice-phishing probability
 ```
 
 ![Trinity Architecture](Phishing%20Detection/trinity.png)
@@ -104,7 +104,7 @@ Access `http://localhost:8000` in your browser and speak into your microphone to
 | File / Folder | Description |
 |---|---|
 | `Phishing Detection/` | Model training notebooks (KoBERT, KoELECTRA, Att-BiLSTM, Ensemble) |
-| `best_model.h5` | Trained Att-BiLSTM model weights |
+| `best_model.h5` | Trained LSTM model weights for the voice demo (Embedding → LSTM → Dense) |
 | `KorCCViD_v1.3_fullcleansed.csv` | Cleansed smishing training dataset |
 | `text_classification_module.py` | Smishing classification inference module |
 | `chat/` | Django voice phishing detection app (views, models, urls) |

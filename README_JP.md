@@ -8,22 +8,22 @@
 > 📌 **前作プロジェクト：** [SepticFilterNLP](https://github.com/fairyofdata/SepticFilterNLP)（三星SDS マルチキャンパス最優秀賞、2022年）で構築した字母トークン化戦略・アンサンブル設計・コミュニティクローリング経験が、本プロジェクトの技術的基盤となっています。
 
 スミッシング（SMS フィッシング）とボイスフィッシング（音声詐欺）を同時に検出する、デュアルチャネル NLP フィッシング検知システムです。  
-テキストチャネル（スミッシング）は KoBERT + KoELECTRA + Att-BiLSTM の **3 重アンサンブル**で判別し、音声チャネル（ボイスフィッシング）はリアルタイム STT 変換後に同一の分類パイプラインへ投入する **マルチチャネル構造**で設計されています。
+テキストチャネル（スミッシング）は KoBERT + KoELECTRA + Att-BiLSTM の **3 重アンサンブル**で判別します（`Phishing Detection/` のノートブック）。音声チャネル（ボイスフィッシング）は別の Django デモで、Google Web Speech API で文字起こしした後、アンサンブルではなく専用の単一 LSTM モデル（`best_model.h5`）で分類します。
 
 ---
 
 ## 🏗️ システムアーキテクチャ
 
 ```
-[入力チャネル]
-    ├── 📩 スミッシング SMS（テキスト）─────────────────┐
-    └── 🎙️ ボイスフィッシング音声 → STT(Django) → テキスト─┘
-                                                          ↓
-                                  [Trinity Ensemble Classifier]
-                             KoBERT ┬ KoELECTRA ┬ Att-BiLSTM
-                                    └── ソフト投票 ──┘
-                                               ↓
-                                    フィッシング / 正常 判定結果
+[テキストチャネル — ノートブック]
+    📩 スミッシング SMS（テキスト）
+        → [Trinity Ensemble: KoBERT ┬ KoELECTRA ┬ Att-BiLSTM → ソフト投票]
+        → フィッシング / 正常
+
+[音声チャネル — Django デモ]
+    🎙️ 音声 → Google Web Speech API（STT）→ テキスト
+        → [単一 LSTM 分類器: best_model.h5]
+        → ボイスフィッシング確率
 ```
 
 ![Trinity Architecture](Phishing%20Detection/trinity.png)
@@ -104,7 +104,7 @@ python manage.py runserver
 | ファイル / フォルダ | 説明 |
 |---|---|
 | `Phishing Detection/` | モデル学習ノートブック（KoBERT, KoELECTRA, Att-BiLSTM, アンサンブル） |
-| `best_model.h5` | 学習済み Att-BiLSTM モデルの重み |
+| `best_model.h5` | 音声デモ用の学習済み LSTM モデルの重み（Embedding → LSTM → Dense） |
 | `KorCCViD_v1.3_fullcleansed.csv` | 精製済みスミッシング学習データセット |
 | `text_classification_module.py` | スミッシング分類推論モジュール |
 | `chat/` | Django ボイスフィッシング検出アプリ（views, models, urls） |

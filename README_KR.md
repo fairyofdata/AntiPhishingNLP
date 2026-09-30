@@ -8,22 +8,22 @@
 > 📌 **전작 프로젝트:** [SepticFilterNLP](https://github.com/fairyofdata/SepticFilterNLP)(삼성SDS 멀티캠퍼스 최우수상, 2022)에서 구축한 자모 토큰화 전략·앙상블 설계·커뮤니티 크롤링 경험이 본 프로젝트의 기술 기반입니다.
 
 스미싱 문자와 보이스피싱 음성을 이중으로 탐지하는 NLP 기반 피싱 감지 시스템입니다.  
-텍스트 채널(스미싱)은 KoBERT + KoELECTRA + Att-BiLSTM **3중 앙상블**로, 음성 채널(보이스피싱)은 실시간 STT 변환 후 동일 분류 파이프라인에 투입하는 **멀티채널 구조**로 설계됐습니다.
+텍스트 채널(스미싱)은 KoBERT + KoELECTRA + Att-BiLSTM **3중 앙상블**로 판별합니다(`Phishing Detection/` 노트북). 음성 채널(보이스피싱)은 별도의 Django 데모로, Google Web Speech API로 받아쓴 텍스트를 앙상블이 아닌 전용 단일 LSTM 모델(`best_model.h5`)로 분류합니다.
 
 ---
 
 ## 🏗️ 시스템 아키텍처
 
 ```
-[입력 채널]
-    ├── 📩 스미싱 문자 (텍스트) ──────────────────────┐
-    └── 🎙️ 보이스피싱 음성 → STT(Django) → 텍스트 ──┘
-                                                      ↓
-                              [Trinity Ensemble Classifier]
-                         KoBERT ┬ KoELECTRA ┬ Att-BiLSTM
-                                └─── 소프트보팅 ───┘
-                                          ↓
-                               피싱 / 정상 분류 결과
+[텍스트 채널 — 노트북]
+    📩 스미싱 문자 (텍스트)
+        → [Trinity Ensemble: KoBERT ┬ KoELECTRA ┬ Att-BiLSTM → 소프트보팅]
+        → 피싱 / 정상
+
+[음성 채널 — Django 데모]
+    🎙️ 음성 → Google Web Speech API (STT) → 텍스트
+        → [단일 LSTM 분류기: best_model.h5]
+        → 보이스피싱 확률
 ```
 
 ![Trinity Architecture](Phishing%20Detection/trinity.png)
@@ -102,7 +102,7 @@ python manage.py runserver
 | 파일/폴더 | 설명 |
 |---|---|
 | `Phishing Detection/` | 모델 학습 노트북 (KoBERT, KoELECTRA, Att-BiLSTM, 앙상블) |
-| `best_model.h5` | 학습된 Att-BiLSTM 모델 가중치 |
+| `best_model.h5` | 음성 데모용 학습된 LSTM 모델 가중치 (Embedding → LSTM → Dense) |
 | `KorCCViD_v1.3_fullcleansed.csv` | 정제된 스미싱 학습 데이터셋 |
 | `text_classification_module.py` | 스미싱 분류 추론 모듈 |
 | `chat/` | Django 보이스피싱 탐지 앱 (views, models, urls) |
