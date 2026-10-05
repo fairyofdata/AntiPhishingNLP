@@ -115,9 +115,8 @@ python manage.py runserver
 **팀원**: 홍수빈, **백지헌**, 장영재, 정희수, 이규영
 
 **백지헌 담당 파트**:
-- 스미싱 탐지 앙상블 모델 설계 및 구현 (Att-BiLSTM 아키텍처, 앙상블 보팅 전략)
-- KorCCViD 데이터셋 정제 및 클래스 불균형 처리 (SMOTE)
-- 텍스트 분류 추론 모듈(`text_classification_module.py`) 개발
+- Att-BiLSTM 구조 제안 (단순 LSTM 대신 양방향 LSTM에 어텐션 층을 더하는 구성)
+- 클래스 불균형에 대한 SMOTE 적용 제안
 
 ---
 

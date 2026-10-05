@@ -117,9 +117,8 @@ Access `http://localhost:8000` in your browser and speak into your microphone to
 **Members**: Subin Hong, **Jiheon Baek**, Youngjae Jang, Heesu Jeong, Gyuyoung Lee
 
 **Jiheon Baek's Contributions**:
-- Designed and implemented the smishing ensemble model (Att-BiLSTM architecture + soft voting strategy)
-- KorCCViD dataset cleansing and class imbalance handling (SMOTE)
-- Developed the text classification inference module (`text_classification_module.py`)
+- Proposed the Att-BiLSTM design: a bidirectional LSTM with an attention layer, in place of a plain LSTM
+- Proposed SMOTE oversampling for the class imbalance
 
 ---
 

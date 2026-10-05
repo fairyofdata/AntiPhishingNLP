@@ -117,9 +117,8 @@ python manage.py runserver
 **メンバー**：홍수빈、**백지헌**、장영재、정희수、이규영
 
 **백지헌 の担当パート**：
-- スミッシング検出アンサンブルモデルの設計・実装（Att-BiLSTM アーキテクチャ + ソフト投票戦略）
-- KorCCViD データセットの精製およびクラス不均衡処理（SMOTE）
-- テキスト分類推論モジュール（`text_classification_module.py`）の開発
+- Att-BiLSTM の構成の提案（単純な LSTM の代わりに、双方向 LSTM に Attention 層を加える）
+- クラス不均衡に対する SMOTE の適用の提案
 
 ---
 
