@@ -118,7 +118,9 @@ Access `http://localhost:8000` in your browser and speak into your microphone to
 
 **Jiheon Baek's Contributions**:
 - Proposed the Att-BiLSTM design (a bidirectional LSTM with an attention layer, in place of a plain LSTM) and led its implementation
+- Designed the soft-voting strategy for the ensemble
 - Proposed SMOTE oversampling for the class imbalance and led its implementation
+- Developed the text classification inference module (`text_classification_module.py`)
 - Some of the detailed work was done jointly with teammates
 
 ---

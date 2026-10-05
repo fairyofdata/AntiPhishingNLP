@@ -116,7 +116,9 @@ python manage.py runserver
 
 **백지헌 담당 파트**:
 - Att-BiLSTM 구조(단순 LSTM 대신 양방향 LSTM에 어텐션 층을 더하는 구성)를 제안하고 구현까지 주도
+- 앙상블 소프트 보팅 전략 설계
 - 클래스 불균형에 대한 SMOTE 적용을 제안하고 구현을 주도
+- 텍스트 분류 추론 모듈(`text_classification_module.py`) 개발
 - 세부 작업 일부는 팀원과 공동으로 수행
 
 ---

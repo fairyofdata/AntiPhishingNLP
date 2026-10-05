@@ -118,7 +118,9 @@ python manage.py runserver
 
 **백지헌 の担当パート**：
 - Att-BiLSTM の構成（単純な LSTM の代わりに、双方向 LSTM に Attention 層を加える）を提案し、実装までを主導
+- アンサンブルのソフト投票戦略の設計
 - クラス不均衡に対する SMOTE の適用を提案し、実装を主導
+- テキスト分類推論モジュール（`text_classification_module.py`）の開発
 - 細部の一部はチームメンバーと共同で実施
 
 ---
