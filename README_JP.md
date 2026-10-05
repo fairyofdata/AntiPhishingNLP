@@ -117,8 +117,9 @@ python manage.py runserver
 **メンバー**：홍수빈、**백지헌**、장영재、정희수、이규영
 
 **백지헌 の担当パート**：
-- Att-BiLSTM の構成の提案（単純な LSTM の代わりに、双方向 LSTM に Attention 層を加える）
-- クラス不均衡に対する SMOTE の適用の提案
+- Att-BiLSTM の構成（単純な LSTM の代わりに、双方向 LSTM に Attention 層を加える）を提案し、実装までを主導
+- クラス不均衡に対する SMOTE の適用を提案し、実装を主導
+- 細部の一部はチームメンバーと共同で実施
 
 ---
 

@@ -117,8 +117,9 @@ Access `http://localhost:8000` in your browser and speak into your microphone to
 **Members**: Subin Hong, **Jiheon Baek**, Youngjae Jang, Heesu Jeong, Gyuyoung Lee
 
 **Jiheon Baek's Contributions**:
-- Proposed the Att-BiLSTM design: a bidirectional LSTM with an attention layer, in place of a plain LSTM
-- Proposed SMOTE oversampling for the class imbalance
+- Proposed the Att-BiLSTM design (a bidirectional LSTM with an attention layer, in place of a plain LSTM) and led its implementation
+- Proposed SMOTE oversampling for the class imbalance and led its implementation
+- Some of the detailed work was done jointly with teammates
 
 ---
 
